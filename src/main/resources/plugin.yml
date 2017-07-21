@@ -1,0 +1,10 @@
+name: MCGameInfo
+author: inventivetalent
+website: https://mcgame.info
+main: org.inventivetalent.mcgameinfo.bukkit.Plugin
+version: ${project.version}
+
+commands:
+  mcgameinfo:
+    description: "Base command for MCGameInfo"
+    aliases: [mcgi]

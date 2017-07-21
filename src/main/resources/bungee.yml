@@ -1,0 +1,5 @@
+name: MCGameInfo
+author: inventivetalent
+website: https://mcgame.info
+main: org.inventivetalent.mcgameinfo.bungee.Plugin
+version: ${project.version}

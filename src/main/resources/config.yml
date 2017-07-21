@@ -1,0 +1,30 @@
+# You can get the required ID and Token by adding your server at https://mcgame.info/account#servers
+server:
+
+  # Unique ID for your server
+  id: "00000000-0000-0000-0000-000000000000"
+
+  # Request Token for your server
+  token: "abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuv123456"
+
+gameDetector:
+  # Enabled this, if you would like the plugin to atomatically detect the game a player is playing, based on
+  # - World Name, if you're using this on a Bukkit/Spigot server
+  # - Server Name, if you're using this on a BungeeCord server
+  enabled: false
+
+  # RegEx patterns for world/server names
+  # (see the existing patterns below as examples)
+  patterns:
+    - pattern: "SKYWARS([0-9]+)"   # This would match world/server names like SKYWARS2, SKYWARS6, SWKYWARS85, etc.
+      game: "SkyWars"
+    - pattern: "MURDER([0-9]+)"   # This would match world/server names like MURDER1, MURDER25, MURDER5, etc.
+      game: "Murder"
+  resetPattern: "LOBBY([0-9]+)"   # This pattern specifies lobby worlds/servers, which resets the game played
+
+# Enable this if you'd like to do all API calls yourself
+# Including join/leave server, which is usually handled by the plugin
+apiOnly: false
+
+# Enable debugging
+debug: false
