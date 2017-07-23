@@ -39,11 +39,10 @@ public class GameInfoClient {
 		request("POST", "/servers/ping", new JSONObject(), callback);
 	}
 
-	public void joinServer(String username, UUID uuid, String serverIp) {
+	public void joinServer(String username, UUID uuid) {
 		JSONObject json = new JSONObject();
 		json.put("username", username);
 		json.put("uuid", uuid.toString());
-		json.put("serverIp", serverIp);
 		request("POST", "/join/server", json);
 	}
 
