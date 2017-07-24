@@ -68,7 +68,7 @@ public class Plugin extends JavaPlugin implements Listener {
 	@EventHandler
 	public void on(PlayerJoinEvent event) {
 		if (getConfig().getBoolean("apiOnly")) { return; }
-		getClient().joinServer(event.getPlayer().getName(), event.getPlayer().getUniqueId(), getConfig().getString("serverIp"));
+		getClient().joinServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 
 	@EventHandler

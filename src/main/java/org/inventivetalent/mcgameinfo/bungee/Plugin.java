@@ -95,7 +95,7 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 	@EventHandler
 	public void on(PostLoginEvent event) {
 		if (config.getBoolean("apiOnly")) { return; }
-		getClient().joinServer(event.getPlayer().getName(), event.getPlayer().getUniqueId(), config.getString("serverIp"));
+		getClient().joinServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 
 	@EventHandler
