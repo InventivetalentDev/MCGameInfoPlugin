@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.GZIPOutputStream;
 
 public class GameInfoClient {
 
@@ -79,6 +80,7 @@ public class GameInfoClient {
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod(method);
 				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setRequestProperty("Content-Encoding", "gzip");
 				connection.setRequestProperty("User-Agent", userAgent);
 
 				connection.setRequestProperty("Server-Id", serverId);
@@ -87,7 +89,8 @@ public class GameInfoClient {
 				connection.setDoOutput(true);
 				connection.setDoInput(true);
 
-				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
+				GZIPOutputStream outStream = new GZIPOutputStream(connection.getOutputStream());
+				OutputStreamWriter out = new OutputStreamWriter(outStream);
 				out.write(json.toString());
 				out.flush();
 				out.close();
