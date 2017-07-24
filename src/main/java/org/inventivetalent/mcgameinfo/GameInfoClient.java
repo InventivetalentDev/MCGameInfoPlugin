@@ -6,13 +6,12 @@ import org.json.simple.parser.JSONParser;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.GZIPOutputStream;
 
 public class GameInfoClient {
 
@@ -79,21 +78,25 @@ public class GameInfoClient {
 				URL url = new URL("https://api.mcgame.info" + path);
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod(method);
-				connection.setRequestProperty("Content-Type", "application/json");
-				connection.setRequestProperty("Content-Encoding", "gzip");
-				connection.setRequestProperty("User-Agent", userAgent);
-
-				connection.setRequestProperty("Server-Id", serverId);
-				connection.setRequestProperty("Server-Token", serverToken);
 
 				connection.setDoOutput(true);
 				connection.setDoInput(true);
 
-				GZIPOutputStream outStream = new GZIPOutputStream(connection.getOutputStream());
-				OutputStreamWriter out = new OutputStreamWriter(outStream);
-				out.write(json.toString());
-				out.flush();
-				out.close();
+				connection.setRequestProperty("Server-Id", serverId);
+				connection.setRequestProperty("Server-Token", serverToken);
+				connection.setRequestProperty("User-Agent", userAgent);
+
+				byte[] data = json.toString().getBytes("UTF-8");
+				byte[] compressedData = Util.gzip(data);
+
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setRequestProperty("Content-Encoding", "gzip");
+				connection.setRequestProperty("Content-Length", Integer.toString(compressedData.length));
+
+				try (OutputStream out = connection.getOutputStream()) {
+					out.write(compressedData);
+					out.flush();
+				}
 
 				if (debug) {
 					System.out.println(connection.getResponseCode());
