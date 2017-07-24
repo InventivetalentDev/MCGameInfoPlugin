@@ -90,26 +90,25 @@ public class GameInfoClient {
 				OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
 				out.write(json.toString());
 				out.flush();
+				out.close();
 
 				if (debug) {
 					System.out.println(connection.getResponseCode());
 				}
-				InputStream stream;
-				if (connection.getResponseCode() == 200) {
-					stream = connection.getInputStream();
-				} else {
-					stream = connection.getErrorStream();
-				}
-				if (debug || callback != null) {
-					BufferedReader in = new BufferedReader(new InputStreamReader(stream));
-					String result = "";
-					String line;
-					while ((line = in.readLine()) != null) {
-						result += line;
+				try (InputStream stream = (connection.getResponseCode() == 200 ? connection.getInputStream() : connection.getErrorStream())) {
+					if (debug || callback != null) {
+						try (BufferedReader in = new BufferedReader(new InputStreamReader(stream))) {
+							String result = "";
+							String line;
+							while ((line = in.readLine()) != null) {
+								result += line;
+							}
+							if (debug) { System.out.println(result); }
+							if (callback != null) { callback.call((JSONObject) new JSONParser().parse(result)); }
+						}
 					}
-					if (debug) { System.out.println(result); }
-					if (callback != null) { callback.call((JSONObject) new JSONParser().parse(result)); }
 				}
+				connection.disconnect();
 			} catch (Exception e) {
 				logger.log(Level.WARNING, "Exception while making request to " + path, e);
 			}
