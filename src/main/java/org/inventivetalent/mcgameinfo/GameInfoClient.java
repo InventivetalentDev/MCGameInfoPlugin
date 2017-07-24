@@ -36,7 +36,7 @@ public class GameInfoClient {
 	}
 
 	public void ping(RequestCallback callback) {
-		request("POST", "/servers/ping", new JSONObject(), callback);
+		request("POST", "/ping/server", new JSONObject(), callback);
 	}
 
 	public void joinServer(String username, UUID uuid) {
