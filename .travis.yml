@@ -1,3 +1,15 @@
 language: java
 jdk:
 - oraclejdk8
+
+deploy:
+  provider: releases
+  api_key: 
+    secure: "ey5XiRD8jjzwRuR80jJIf72TDcCl4fPda/iXcnzKI0zDFwdlnRs6YztvlF6ypzqRl9o0gqoUv0/tymvuiRyC8hMcZSbNRnEAYI7S6RUoyOL5DfJ4uCjpjZdIUtLNXgFZA2LR5IpdKoFyCJ6QXL82b7ROw+5RfvHZOCMY6SqjRwIjPA3ZUYeX/V07s9FKIfCg09mia0NR/FxTWy3CwkOUlKOKrhCyK0oTQon6H5c9df7smrWjWUTjEmmwYTx9WD2TvVReueNl84C3Hta517xJcR4AnE9HeuUA+Q32eFfMlao39Vn0YfFjOytdIzKnEwPus8j0l/Sj9ZaAhOfFceHpXKAWTJB6YAsxwNYmvJZgZK+sKtNLa9YhpqKNOCyJ98x0/uGMwerJ+TqpwDJUk2QIhKvBudmSODAeO08Z+OazvhV32Zrr9wU1pwEHZgcWUc/Jjh1AjChNFU0wzBQRci+de2HQni0ZlBYxyFjETTby7ZMdq4AOLQCCuTMCquP668OhKIDsJrcSVmZ4p22TJJ6HRR9e5u5HM2J9mkpISoiuf8dsrh3Qft5mtwMOTi+Z46aIBFpYLM1IPlekQffZHtbXUwg5cTND2CFcNFGrSqVWEw++IokLgp951oJhtD2qnReeyI4a3TTg11K1LSQx++BS9b8MOGSFnpQEKdcc+Y0V29M="
+  file_glob: true
+  file: 
+    - "Bukkit/target/MCGameInfoBukkit_v*.jar"
+    - "Bungee/target/MCGameInfoBungee_v*.jar"
+  skip_cleanup: true
+  on:
+    tags: true
