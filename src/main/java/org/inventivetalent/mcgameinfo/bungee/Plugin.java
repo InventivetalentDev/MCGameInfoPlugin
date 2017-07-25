@@ -55,6 +55,8 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 		this.client = new GameInfoClient(getLogger(), runnable -> ProxyServer.getInstance().getScheduler().runAsync(Plugin.this, runnable), this.serverId, this.serverToken, "GameInfoPlugin-Bungee/" + getDescription().getVersion());
 		if (config.getBoolean("debug")) { this.client.enableDebug(); }
 		ProxyServer.getInstance().getScheduler().schedule(this, () -> Util.ping(client, getLogger()),2, TimeUnit.SECONDS);
+
+		new MetricsLite(this);
 	}
 
 	void loadConfig() {
