@@ -1,5 +1,6 @@
 package org.inventivetalent.mcgameinfo.bukkit;
 
+import org.bstats.bukkit.MetricsLite;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

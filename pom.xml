@@ -18,6 +18,7 @@
         <module>Common</module>
         <module>Bukkit</module>
         <module>Bungee</module>
+        <module>Sponge</module>
     </modules>
 
     <dependencies>
@@ -64,6 +65,10 @@
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>bstats-repo</id>
+            <url>http://repo.bstats.org/content/repositories/releases/</url>
         </repository>
     </repositories>
          

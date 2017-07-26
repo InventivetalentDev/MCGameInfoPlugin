@@ -86,6 +86,12 @@
             <artifactId>bungeecord-config</artifactId>
             <version>1.9-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bungeecord-lite</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
 

@@ -10,6 +10,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
+import org.bstats.bungeecord.MetricsLite;
 import org.inventivetalent.mcgameinfo.GameInfoClient;
 import org.inventivetalent.mcgameinfo.GamePattern;
 import org.inventivetalent.mcgameinfo.Util;
