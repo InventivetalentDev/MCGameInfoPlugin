@@ -11,15 +11,13 @@ import java.util.zip.GZIPOutputStream;
 public class Util {
 
 	public static void ping(GameInfoClient client, Logger logger) {
-		final long start = System.currentTimeMillis();
 		client.ping(data -> {
 			if (!"ok".equals(data.get("status"))) {
 				logger.warning("Got non-OK ping response from the API");
 				logger.warning(data.toJSONString());
 			} else {
-				long localPing = System.currentTimeMillis() - start;
 				long serverPing = System.currentTimeMillis() - (long) data.get("ts");
-				logger.info("API Ping: " + localPing + "ms/" + serverPing + "ms");
+				logger.info("API Ping: " + serverPing + "ms");
 			}
 		});
 	}
