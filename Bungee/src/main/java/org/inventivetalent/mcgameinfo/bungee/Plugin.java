@@ -104,7 +104,7 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 	@EventHandler
 	public void on(PlayerDisconnectEvent event) {
 		if (config.getBoolean("apiOnly")) { return; }
-		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
+//		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 		getClient().leaveServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 

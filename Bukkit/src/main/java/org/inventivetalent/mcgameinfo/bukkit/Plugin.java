@@ -77,14 +77,14 @@ public class Plugin extends JavaPlugin implements Listener {
 	@EventHandler
 	public void on(PlayerQuitEvent event) {
 		if (getConfig().getBoolean("apiOnly")) { return; }
-		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
+//		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 		getClient().leaveServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 
 	@EventHandler
 	public void on(PlayerKickEvent event) {
 		if (getConfig().getBoolean("apiOnly")) { return; }
-		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
+//		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 		getClient().leaveServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 
