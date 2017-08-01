@@ -53,9 +53,9 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 
 		loadConfig();
 
-		this.client = new GameInfoClient(getLogger(), runnable -> ProxyServer.getInstance().getScheduler().runAsync(Plugin.this, runnable), this.serverId, this.serverToken, "GameInfoPlugin-Bungee/" + getDescription().getVersion());
+		this.client = new GameInfoClient(getLogger(), runnable -> ProxyServer.getInstance().getScheduler().runAsync(Plugin.this, runnable), this.serverId, this.serverToken, "GameInfoPlugin-Bungee/" + getDescription().getVersion(), "bungeecord");
 		if (config.getBoolean("debug")) { this.client.enableDebug(); }
-		ProxyServer.getInstance().getScheduler().schedule(this, () -> Util.ping(client, getLogger()),2, TimeUnit.SECONDS);
+		ProxyServer.getInstance().getScheduler().schedule(this, () -> Util.ping(client, getLogger()), 2, TimeUnit.SECONDS);
 
 		new MetricsLite(this);
 	}
@@ -63,7 +63,7 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 	void loadConfig() {
 		this.enableGameDetector = config.getBoolean("gameDetector.enabled");
 		if (this.enableGameDetector) {
-			Util.loadGamePatterns((List<Map>) config.getList("gameDetector.patterns"),gamePatterns,getLogger());
+			Util.loadGamePatterns((List<Map>) config.getList("gameDetector.patterns"), gamePatterns, getLogger());
 			resetPattern = new GamePattern(config.getString("gameDetector.resetPattern"), ":reset");
 		}
 	}
@@ -104,7 +104,7 @@ public class Plugin extends net.md_5.bungee.api.plugin.Plugin implements Listene
 	@EventHandler
 	public void on(PlayerDisconnectEvent event) {
 		if (config.getBoolean("apiOnly")) { return; }
-//		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
+		//		getClient().leaveGame(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 		getClient().leaveServer(event.getPlayer().getName(), event.getPlayer().getUniqueId());
 	}
 

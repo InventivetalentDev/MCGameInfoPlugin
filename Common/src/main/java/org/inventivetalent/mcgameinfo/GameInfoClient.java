@@ -20,15 +20,17 @@ public class GameInfoClient {
 	private final String           serverId;
 	private final String           serverToken;
 	private final String           userAgent;
+	private final String           serverType;
 
 	private boolean debug = false;
 
-	public GameInfoClient(Logger logger, ScheduleCallback callback, String serverId, String serverToken, String userAgent) {
+	public GameInfoClient(Logger logger, ScheduleCallback callback, String serverId, String serverToken, String userAgent, String serverType) {
 		this.logger = logger;
 		this.scheduleCallback = callback;
 		this.serverId = serverId;
 		this.serverToken = serverToken;
 		this.userAgent = userAgent;
+		this.serverType = serverType;
 	}
 
 	public void enableDebug() {
@@ -84,6 +86,7 @@ public class GameInfoClient {
 
 				connection.setRequestProperty("Server-Id", serverId);
 				connection.setRequestProperty("Server-Token", serverToken);
+				connection.setRequestProperty("Server-Type", serverType);
 				connection.setRequestProperty("User-Agent", userAgent);
 
 				byte[] data = json.toString().getBytes("UTF-8");

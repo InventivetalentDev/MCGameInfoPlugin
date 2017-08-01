@@ -42,7 +42,7 @@ public class Plugin extends JavaPlugin implements Listener {
 
 		loadConfig();
 
-		this.client = new GameInfoClient(getLogger(), runnable -> Bukkit.getScheduler().runTaskAsynchronously(Plugin.this, runnable), this.serverId, this.serverToken, "GameInfoPlugin-Bukkit/" + getDescription().getVersion());
+		this.client = new GameInfoClient(getLogger(), runnable -> Bukkit.getScheduler().runTaskAsynchronously(Plugin.this, runnable), this.serverId, this.serverToken, "GameInfoPlugin-Bukkit/" + getDescription().getVersion(), "bukkit");
 		if (getConfig().getBoolean("debug")) { this.client.enableDebug(); }
 		Bukkit.getScheduler().runTaskLater(this, () -> Util.ping(client, getLogger()), 20 * 2);
 
