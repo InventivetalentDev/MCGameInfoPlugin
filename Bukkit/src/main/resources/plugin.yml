@@ -1,4 +1,4 @@
-name: MCGameInfo
+name: MCGameInfo-Bukkit
 author: inventivetalent
 website: https://mcgame.info
 main: org.inventivetalent.mcgameinfo.bukkit.Plugin
