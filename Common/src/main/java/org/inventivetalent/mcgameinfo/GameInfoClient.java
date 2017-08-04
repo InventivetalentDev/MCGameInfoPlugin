@@ -140,6 +140,7 @@ public class GameInfoClient {
 				connection.disconnect();
 			} catch (Exception e) {
 				logger.log(Level.WARNING, "Exception while making request to " + path, e);
+				if (callback != null) { callback.call(new JSONObject()); }
 			}
 		});
 	}
