@@ -61,33 +61,41 @@ public class GameInfoClient {
 		return ready;
 	}
 
-	public void joinServer(String username, UUID uuid) {
+	public boolean joinServer(String username, UUID uuid) {
+		if (!this.ready) { return false; }
 		JSONObject json = new JSONObject();
 		json.put("username", username);
 		json.put("uuid", uuid.toString());
 		request("POST", "/join/server", json);
+		return true;
 	}
 
-	public void leaveServer(String username, UUID uuid) {
+	public boolean leaveServer(String username, UUID uuid) {
+		if (!this.ready) { return false; }
 		JSONObject json = new JSONObject();
 		json.put("username", username);
 		json.put("uuid", uuid.toString());
 		request("POST", "/leave/server", json);
+		return true;
 	}
 
-	public void joinGame(String username, UUID uuid, String gameName) {
+	public boolean joinGame(String username, UUID uuid, String gameName) {
+		if (!this.ready) { return false; }
 		JSONObject json = new JSONObject();
 		json.put("username", username);
 		json.put("uuid", uuid.toString());
 		json.put("gameName", gameName);
 		request("POST", "/join/game", json);
+		return true;
 	}
 
-	public void leaveGame(String username, UUID uuid) {
+	public boolean leaveGame(String username, UUID uuid) {
+		if (!this.ready) { return false; }
 		JSONObject json = new JSONObject();
 		json.put("username", username);
 		json.put("uuid", uuid.toString());
 		request("POST", "/leave/game", json);
+		return true;
 	}
 
 	void request(String method, String path, JSONObject json) {
