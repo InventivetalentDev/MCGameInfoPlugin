@@ -10,7 +10,7 @@
     <version>parent</version>
 
     <properties>
-        <pl.version>1.0.1-SNAPSHOT</pl.version>
+        <pl.version>1.0.2-SNAPSHOT</pl.version>
     </properties>
 
 
