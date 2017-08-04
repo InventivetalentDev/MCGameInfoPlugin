@@ -22,6 +22,11 @@ public class GameInfoClient {
 	private final String           userAgent;
 	private final String           serverType;
 
+	/**
+	 * Set after the first 'ping' request. <code>true</code>, if the ping was successful and the API is online
+	 **/
+	private boolean ready = false;
+
 	private boolean debug = false;
 
 	public GameInfoClient(Logger logger, ScheduleCallback callback, String serverId, String serverToken, String userAgent, String serverType) {
@@ -37,8 +42,23 @@ public class GameInfoClient {
 		this.debug = true;
 	}
 
+	/**
+	 * Ping the API
+	 *
+	 * @param callback the ping result
+	 */
 	public void ping(RequestCallback callback) {
-		request("POST", "/ping/server", new JSONObject(), callback);
+		request("POST", "/ping/server", new JSONObject(), data -> {
+			GameInfoClient.this.ready = "ok".equals(data.get("status"));
+			callback.call(data);
+		});
+	}
+
+	/**
+	 * @return <code>true</code>, if the client was able to ping the API and is ready to make further requests
+	 */
+	public boolean isReady() {
+		return ready;
 	}
 
 	public void joinServer(String username, UUID uuid) {
