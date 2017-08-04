@@ -12,12 +12,12 @@ public class Util {
 
 	public static void ping(GameInfoClient client, Logger logger) {
 		client.ping(data -> {
-			if (!"ok".equals(data.get("status"))) {
-				logger.warning("Got non-OK ping response from the API");
-				logger.warning(data.toJSONString());
-			} else {
+			if (data.containsKey("status") && "ok".equals(data.get("status"))) {
 				long serverPing = System.currentTimeMillis() - (long) data.get("ts");
 				logger.info("API Ping: " + serverPing + "ms");
+			} else {
+				logger.warning("Got non-OK ping response from the API");
+				logger.warning(data.toJSONString());
 			}
 		});
 	}
